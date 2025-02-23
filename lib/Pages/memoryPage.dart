@@ -50,7 +50,7 @@ class _MemoryPageState extends State<MemoryPage> {
               children: [
 
                 Text(
-                  '第 '+(wordNum+1).toString()+' 个 / 共 '+words.length.toString()+' 个',
+                  '第 ${wordNum+1} 个 / 共 ${words.length} 个',
                   style: TextStyle(
                     fontSize: 14,
                     color: Colors.black,
