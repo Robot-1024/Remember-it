@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:flutter/services.dart';
-import 'package:remember_it/Pages/firstPage.dart';
+import 'package:remember_it/Pages/first_page.dart';
 import 'package:remember_it/data/word.dart';
 
 Future<List<Word>> loadWords() async {
@@ -14,6 +14,7 @@ class MemoryPage extends StatefulWidget {
   const MemoryPage({super.key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _MemoryPageState createState() => _MemoryPageState();
 }
 
@@ -24,18 +25,18 @@ class _MemoryPageState extends State<MemoryPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("记忆"),
+        title: const Text("记忆"),
         automaticallyImplyLeading: false,
       ),
       body: FutureBuilder<List<Word>>(
         future: loadWords(), // 加载 JSON 数据
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           } else if (snapshot.hasError) {
-            return Center(child: Text('加载失败'));
+            return const Center(child: Text('加载失败'));
           } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-            return Center(child: Text('没有数据'));
+            return const Center(child: Text('没有数据'));
           }
 
           final words = snapshot.data!;
@@ -51,13 +52,13 @@ class _MemoryPageState extends State<MemoryPage> {
 
                 Text(
                   '第 ${wordNum+1} 个 / 共 ${words.length} 个',
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 14,
                     color: Colors.black,
                   ),
                 ),
 
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
 
                 // 原词，48pt 加粗，deeppurple
                 Text(
@@ -68,7 +69,7 @@ class _MemoryPageState extends State<MemoryPage> {
                     color: Colors.deepPurple, // deeppurple
                   ),
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 // 显示释义
                 const Text(
                   "释义：",
@@ -91,7 +92,7 @@ class _MemoryPageState extends State<MemoryPage> {
                         ),
                       ),
                     )),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 // 例句
                 const Text(
                   //"例句: \n${word.exampleSentence}",
@@ -115,11 +116,10 @@ class _MemoryPageState extends State<MemoryPage> {
                       // 如果是最后一个单词，跳转到 homePage
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => FirstPage()),
+                        MaterialPageRoute(builder: (context) => const FirstPage()),
                       ); // 使用路由跳转
                     }
                   },
-                  child: Text(wordNum < words.length - 1 ? "下一个" : "结束"),
                   style: ElevatedButton.styleFrom(
                     padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 32),
                     backgroundColor: Colors.deepPurple, // 按钮颜色
@@ -129,6 +129,7 @@ class _MemoryPageState extends State<MemoryPage> {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
+                  child: Text(wordNum < words.length - 1 ? "下一个" : "结束"),
                 ),
               ],
             ),

@@ -13,28 +13,28 @@ class LoginPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             // Username field
-            TextField(
+            const TextField(
               decoration: InputDecoration(
-                labelText: 'Username',
+                labelText: '用户名',
                 border: OutlineInputBorder(),
               ),
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             
             // Password field
-            TextField(
+            const TextField(
               obscureText: true,
               decoration: InputDecoration(
-                labelText: 'Password',
+                labelText: '密码',
                 border: OutlineInputBorder(),
               ),
             ),
-            SizedBox(height: 24),
+            const SizedBox(height: 24),
             
             // Login button
             ElevatedButton(
               onPressed: () {},
-              child: Text('Login'),
+              child: const Text('登录'),
             ),
           ],
         ),

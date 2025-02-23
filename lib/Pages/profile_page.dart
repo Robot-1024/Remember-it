@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:remember_it/Pages/loginPage.dart';
+import 'package:remember_it/Pages/login_page.dart';
 
 
 class ProfilePage extends StatelessWidget {

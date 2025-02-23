@@ -76,14 +76,12 @@ class HomePage extends StatelessWidget {
                       // 跳转到 MemoryPage
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => MemoryPage()),
+                        MaterialPageRoute(builder: (context) => const MemoryPage()),
                       );
                     },
                     style: ElevatedButton.styleFrom(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 30, vertical: 8),
-                      backgroundColor:
-                          Color.fromARGB(255, 124, 15, 203), // 按钮背景色
+                      padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 8),
+                      backgroundColor: const Color.fromARGB(255, 124, 15, 203), // 按钮背景色
                     ),
                     child: const Row(
                       mainAxisSize: MainAxisSize.min,

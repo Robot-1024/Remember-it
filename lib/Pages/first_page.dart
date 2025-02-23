@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:remember_it/Pages/homepage.dart';
-import 'package:remember_it/Pages/profilePage.dart';
-import 'package:remember_it/Pages/settingsPage.dart';
+import 'package:remember_it/Pages/profile_page.dart';
+import 'package:remember_it/Pages/settings_page.dart';
 
 class FirstPage extends StatefulWidget {
-  FirstPage({super.key});
+  const FirstPage({super.key});
 
   @override
   State<FirstPage> createState() => _FirstPageState();
@@ -21,11 +21,11 @@ class _FirstPageState extends State<FirstPage> {
 
   final List _pages = [
 
-    HomePage(),
+    const HomePage(),
 
-    ProfilePage(),
+    const ProfilePage(),
 
-    SettingsPage(),
+    const SettingsPage(),
 
   ];
 
