@@ -15,8 +15,8 @@ class ProfilePage extends StatelessWidget {
       body: Column(
         children: [
           Container(
-            padding: EdgeInsets.all(16),
-            margin: EdgeInsets.all(16),
+            padding: const EdgeInsets.all(16),
+            margin: const EdgeInsets.all(16),
             width: double.infinity,
             decoration: BoxDecoration(
               color: const Color.fromARGB(255, 238, 229, 255),
@@ -81,14 +81,14 @@ class ProfilePage extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => LoginPage()),
+                  MaterialPageRoute(builder: (context) => const LoginPage()),
                 );
               },
           
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.white, // 按钮背景色为白色
-                padding: EdgeInsets.symmetric(vertical: 14), // 只设置上下内边距
-                side: BorderSide(color: Colors.red), // 按钮边框为红色
+                padding: const EdgeInsets.symmetric(vertical: 14), // 只设置上下内边距
+                side: const BorderSide(color: Colors.red), // 按钮边框为红色
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20), // 圆角边框
                 ),

@@ -62,7 +62,7 @@ class _MemoryPageState extends State<MemoryPage> {
                 // 原词，48pt 加粗，deeppurple
                 Text(
                   word.word,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 48,
                     fontWeight: FontWeight.bold,
                     color: Colors.deepPurple, // deeppurple
@@ -70,7 +70,7 @@ class _MemoryPageState extends State<MemoryPage> {
                 ),
                 SizedBox(height: 20),
                 // 显示释义
-                Text(
+                const Text(
                   "释义：",
                   style: TextStyle(
                     fontSize: 24,
@@ -78,13 +78,13 @@ class _MemoryPageState extends State<MemoryPage> {
                     fontWeight: FontWeight.normal,
                   ),
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 // 遍历释义
                 ...word.definitions.map((definition) => Padding(
                       padding: const EdgeInsets.only(bottom: 8.0),
                       child: Text(
                         "${word.definitions.indexOf(definition) + 1}. $definition",
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 22,
                           color: Colors.black, // 黑色
                           fontWeight: FontWeight.normal,
@@ -93,16 +93,16 @@ class _MemoryPageState extends State<MemoryPage> {
                     )),
                 SizedBox(height: 20),
                 // 例句
-                Text(
+                const Text(
                   //"例句: \n${word.exampleSentence}",
                   "例句功能开发中...",
                   style: TextStyle(
                     fontSize: 18,
-                    color: const Color.fromARGB(255, 58, 58, 58), // 黑色
+                    color: Color.fromARGB(255, 58, 58, 58), // 黑色
                     fontWeight: FontWeight.normal,
                   ),
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 // "下一个" 或 "结束" 按钮
                 ElevatedButton(
                   onPressed: () {
@@ -121,10 +121,10 @@ class _MemoryPageState extends State<MemoryPage> {
                   },
                   child: Text(wordNum < words.length - 1 ? "下一个" : "结束"),
                   style: ElevatedButton.styleFrom(
-                    padding: EdgeInsets.symmetric(vertical: 16, horizontal: 32),
+                    padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 32),
                     backgroundColor: Colors.deepPurple, // 按钮颜色
                     foregroundColor: Colors.white, // 按钮文字颜色
-                    textStyle: TextStyle(
+                    textStyle: const TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
                     ),
