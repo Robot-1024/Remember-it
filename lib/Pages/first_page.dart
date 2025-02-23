@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:remember_it/Pages/homepage.dart';
+import 'package:remember_it/Pages/home_page.dart';
 import 'package:remember_it/Pages/profile_page.dart';
 import 'package:remember_it/Pages/settings_page.dart';
 

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:remember_it/Pages/memorypage.dart';
+import 'package:remember_it/Pages/memory_page.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
