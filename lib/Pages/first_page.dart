@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:remember_it/Pages/home_page.dart';
+import 'package:remember_it/Pages/home_page.dart';import 'package:remember_it/Pages/poem_list_page.dart';
 import 'package:remember_it/Pages/profile_page.dart';
-import 'package:remember_it/Pages/settings_page.dart';
 
 class FirstPage extends StatefulWidget {
   const FirstPage({super.key});
@@ -19,14 +18,14 @@ class _FirstPageState extends State<FirstPage> {
     });
   }
 
-  final List _pages = [
+  final List<Widget> _pages = [
 
     const HomePage(),
 
+    const PoemListPage(),
+
     const ProfilePage(),
-
-    const SettingsPage(),
-
+   
   ];
 
   @override
@@ -44,10 +43,13 @@ class _FirstPageState extends State<FirstPage> {
             label: '主页',
           ),
           BottomNavigationBarItem(
+            icon: Icon(Icons.list),
+            label: '诗单',
+          ),
+          BottomNavigationBarItem(
             icon: Icon(Icons.person),
             label: '个人信息',
           ),
-          
         ],
       ),
     );

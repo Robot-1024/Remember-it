@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:flutter/services.dart';
 import 'package:remember_it/Pages/first_page.dart';
-import 'package:remember_it/data/word.dart';
+import 'package:remember_it/data/poem.dart';
 
-Future<List<Word>> loadWords() async {
-  final String response = await rootBundle.loadString('assets/words.json');
+Future<List<Poem>> loadPoems() async {
+  final String response = await rootBundle.loadString('assets/poems.json');
   final List<dynamic> data = json.decode(response);
-  return data.map((json) => Word.fromJson(json)).toList();
+  return data.map((json) => Poem.fromJson(json)).toList();
 }
 
 class MemoryPage extends StatefulWidget {
@@ -20,6 +20,23 @@ class MemoryPage extends StatefulWidget {
 
 class _MemoryPageState extends State<MemoryPage> {
   int wordNum = 0; // 当前显示的单词索引
+  List<int> stepNum = [1, 1, 1]; // 当前的步骤索引
+  int stepMax = 5;
+
+  /*
+
+  步骤说明:
+  step1: 总览诗歌
+  step2.1.1: 单看一句诗
+  step2.1.2: 单句挖空（3个字）
+  step2.1.3: 上下句默写
+  step2.2,2.3,2.4...: 重复以上步骤
+  step3: 全诗出4道上下句默写
+  step4: 全诗总览
+  step5: 全诗默写
+  end
+
+  */
 
   @override
   Widget build(BuildContext context) {
@@ -28,8 +45,8 @@ class _MemoryPageState extends State<MemoryPage> {
         title: const Text("记忆"),
         automaticallyImplyLeading: false,
       ),
-      body: FutureBuilder<List<Word>>(
-        future: loadWords(), // 加载 JSON 数据
+      body: FutureBuilder<List<Poem>>(
+        future: loadPoems(), // 加载 JSON 数据
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
@@ -39,19 +56,18 @@ class _MemoryPageState extends State<MemoryPage> {
             return const Center(child: Text('没有数据'));
           }
 
-          final words = snapshot.data!;
+          final poems = snapshot.data!;
 
           // 确保 wordNum 不超过数据的长度
-          final word = words.length > wordNum ? words[wordNum] : words.last;
+          final poem = poems.length > wordNum ? poems[wordNum] : poems.last;
 
           return Padding(
             padding: const EdgeInsets.all(16),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-
                 Text(
-                  '第 ${wordNum+1} 个 / 共 ${words.length} 个',
+                  '第 ${stepNum[0]}.${stepNum[1]} 步 / 共 ${stepMax} 步',
                   style: const TextStyle(
                     fontSize: 14,
                     color: Colors.black,
@@ -62,29 +78,21 @@ class _MemoryPageState extends State<MemoryPage> {
 
                 // 原词，48pt 加粗，deeppurple
                 Text(
-                  word.word,
+                  poem.title,
                   style: const TextStyle(
-                    fontSize: 48,
+                    fontSize: 36,
                     fontWeight: FontWeight.bold,
                     color: Colors.deepPurple, // deeppurple
                   ),
                 ),
                 const SizedBox(height: 20),
                 // 显示释义
-                const Text(
-                  "释义：",
-                  style: TextStyle(
-                    fontSize: 24,
-                    color: Colors.black, // 黑色
-                    fontWeight: FontWeight.normal,
-                  ),
-                ),
-                const SizedBox(height: 10),
+
                 // 遍历释义
-                ...word.definitions.map((definition) => Padding(
+                ...poem.content.map((content) => Padding(
                       padding: const EdgeInsets.only(bottom: 8.0),
                       child: Text(
-                        "${word.definitions.indexOf(definition) + 1}. $definition",
+                        "$content",
                         style: const TextStyle(
                           fontSize: 22,
                           color: Colors.black, // 黑色
@@ -94,34 +102,39 @@ class _MemoryPageState extends State<MemoryPage> {
                     )),
                 const SizedBox(height: 20),
                 // 例句
-                const Text(
-                  //"例句: \n${word.exampleSentence}",
-                  "例句功能开发中...",
-                  style: TextStyle(
-                    fontSize: 18,
-                    color: Color.fromARGB(255, 58, 58, 58), // 黑色
-                    fontWeight: FontWeight.normal,
-                  ),
-                ),
+
                 const SizedBox(height: 20),
                 // "下一个" 或 "结束" 按钮
                 ElevatedButton(
                   onPressed: () {
-                    if (wordNum < words.length - 1) {
+                    if (stepNum[0] < stepMax) {
                       setState(() {
-                        // 显示下一个单词，循环显示
-                        wordNum = wordNum + 1;
+                        // 显示下一步，循环显示
+                        if (stepNum[0] == 2) {
+                          // 单句精读
+                          if (stepNum[2] == 3) {
+                            // 完成一句的学习
+                            stepNum[1]++;
+                            stepNum[2] = 1;
+                          } else {
+                            stepNum[2]++;
+                          }
+                        } else {
+                          stepNum[0]++;
+                        }
                       });
                     } else {
                       // 如果是最后一个单词，跳转到 homePage
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => const FirstPage()),
+                        MaterialPageRoute(
+                            builder: (context) => const FirstPage()),
                       ); // 使用路由跳转
                     }
                   },
                   style: ElevatedButton.styleFrom(
-                    padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 32),
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 16, horizontal: 32),
                     backgroundColor: Colors.deepPurple, // 按钮颜色
                     foregroundColor: Colors.white, // 按钮文字颜色
                     textStyle: const TextStyle(
@@ -129,7 +142,7 @@ class _MemoryPageState extends State<MemoryPage> {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  child: Text(wordNum < words.length - 1 ? "下一个" : "结束"),
+                  child: Text(wordNum < poems.length - 1 ? "下一个" : "结束"),
                 ),
               ],
             ),
