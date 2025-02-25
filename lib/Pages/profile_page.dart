@@ -67,7 +67,7 @@ class ProfilePage extends StatelessWidget {
                 ),
                 
                 Text( // 版本号
-                  "0.1.0"
+                  "0.2.1"
                 ),
               ],
             ),

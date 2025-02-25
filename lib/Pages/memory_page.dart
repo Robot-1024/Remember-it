@@ -112,12 +112,18 @@ class _MemoryPageState extends State<MemoryPage> {
                         // 显示下一步，循环显示
                         if (stepNum[0] == 2) {
                           // 单句精读
-                          if (stepNum[2] == 3) {
-                            // 完成一句的学习
-                            stepNum[1]++;
+                          if (stepNum[1] == poem.content.length) {
+                            stepNum[0]++;
+                            stepNum[1] = 1;
                             stepNum[2] = 1;
                           } else {
-                            stepNum[2]++;
+                            if (stepNum[2] == 3) {
+                              // 完成一句的学习
+                              stepNum[1]++;
+                              stepNum[2] = 1;
+                            } else {
+                              stepNum[2]++;
+                            }
                           }
                         } else {
                           stepNum[0]++;
@@ -142,7 +148,7 @@ class _MemoryPageState extends State<MemoryPage> {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  child: Text(wordNum < poems.length - 1 ? "下一个" : "结束"),
+                  child: Text(stepNum[0] < stepMax ? "下一个" : "结束"),
                 ),
               ],
             ),
