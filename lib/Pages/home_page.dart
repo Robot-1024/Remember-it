@@ -25,13 +25,14 @@ class HomePage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const Text(
-                  "中考150实词", // 书名
+                  "题破山寺后禅院", // 书名
                   style: TextStyle(
                     fontSize: 22,
                     fontWeight: FontWeight.bold,
                     color: Color.fromARGB(255, 0, 0, 0),
                   ),
                 ),
+                /*
                 const SizedBox(height: 8), // 进度间距
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -68,8 +69,8 @@ class HomePage extends StatelessWidget {
                       ),
                     ),
                   ],
-                ),
-                const SizedBox(height: 16), // 按钮间距
+                ),*/
+                const SizedBox(height: 20), // 按钮间距
                 Center(
                   child: ElevatedButton(
                     onPressed: () {

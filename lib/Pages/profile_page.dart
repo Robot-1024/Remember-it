@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:remember_it/Pages/login_page.dart';
 
 
 class ProfilePage extends StatelessWidget {
@@ -79,10 +78,7 @@ class ProfilePage extends StatelessWidget {
             width: double.infinity, // 保证按钮宽度和父容器一样宽
             child: ElevatedButton(
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const LoginPage()),
-                );
+                Navigator.pushNamed(context, '/login_page');
               },
           
               style: ElevatedButton.styleFrom(

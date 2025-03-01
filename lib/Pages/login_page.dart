@@ -33,7 +33,9 @@ class LoginPage extends StatelessWidget {
             
             // Login button
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushNamed(context, '/first_page');
+              },
               child: const Text('登录'),
             ),
           ],

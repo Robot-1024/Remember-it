@@ -7,7 +7,7 @@ class MemoryStep2X1 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('记忆'),
+        title: const Text('记忆'),
       ),
     );
   }

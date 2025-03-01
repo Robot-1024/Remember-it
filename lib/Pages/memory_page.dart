@@ -101,10 +101,11 @@ class _MemoryPageState extends State<MemoryPage> {
                       ),
                     )),
                 const SizedBox(height: 20),
-                // 例句
+                
 
                 const SizedBox(height: 20),
                 // "下一个" 或 "结束" 按钮
+                
                 ElevatedButton(
                   onPressed: () {
                     if (stepNum[0] < stepMax) {

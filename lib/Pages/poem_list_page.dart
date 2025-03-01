@@ -13,8 +13,9 @@ class PoemListPage extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
+        automaticallyImplyLeading: false,
       ),
-      body: Text("helloworld"),
+      body: Text("请选择你的诗单"),
     );
   }
 }
